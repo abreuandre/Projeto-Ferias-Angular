@@ -1,0 +1,41 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" formControlName="email" required>
+<div *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="error-message">
+  Email é obrigatório.
+</div>
+<div *ngIf="loginForm.get('email')?.hasError('email') && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="error-message">
+  Email inválido.
+</div>
+    </div>
+
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" formControlName="password" name="password" required>
+      <div *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+        Senha é obrigatória.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" formControlName="rememberMe" name="rememberMe">
+      <label for="rememberMe">Remember Me</label>
+    </div>
+
+    <button type="submit">Sign In</button>
+    <div *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)" class="error-message">
+      Formulário inválido. Preencha todos os campos corretamente.
+    </div>
+  </form>
+
+  <div class="forgot-password-link">
+    <a href="#">I forgot my password</a>
+  </div>
+
+  <div class="register-link">
+    <a (click)="onRegisterClick()" routerLink="/register">Register a new membership</a>
+  </div>
+</div>
